@@ -10,6 +10,10 @@ class indexPage{
         this.ingresarEquipo=".product-image-photo",
         this.verificacion=".active > .details > ul > :nth-child(1)"
 
+        //CP002
+
+        this.filtrarPor="#layered-filter-block > .block-title > strong",
+
         //CP003
 
         this.terceroLista='.js-device-caruosel-auto > .slick-list > .slick-track > [data-slick-index="2"]',
@@ -52,6 +56,12 @@ class indexPage{
 
     verification=(element)=>{
         cy.get(this.verificacion).contains("12");
+    }
+
+    //CP002
+
+    filtrarOpciones=(element)=>{
+        cy.get(this.filtrarPor).click({force:true});
     }
 
     //CP003

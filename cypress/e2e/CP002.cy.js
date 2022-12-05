@@ -1,21 +1,23 @@
+import indexPage from "../support/index";
+
 describe('empty spec', () => {
   it('Visitar tienda Movistar', () => {
     indexPage.urlMovistar();
   });
 
   it('Filtro por ver mas equipos', () => {
-    cy.get('.device-carousel-title > a').click({force:true});
+    indexPage.verLista();
   });
 
-  it('Filtro por cantidad asignada', () => {
-    cy.get('#layered-filter-block > .block-title > strong').click({force:true});
-    cy.get('.filter-options-content > .items > :nth-child(2) > a > :nth-child(1)').click({force:true});
+  it('Filtro por cantidad de dinero asignada', () => {
+    indexPage.filtrarOpciones();
+    cy.get("ol").find("li").eq(5).click();
+    indexPage.filtrarOpciones();
+    cy.get("ol").find("li").eq(8).click({force:true});
   });
-
-
-  it('Filtro por GB de memoria interna', () => {
-    cy.get('#layered-filter-block > .block-title > strong').click({force:true});
-    cy.get('[attribute="movistar_internalmemory"] > .filter-options-content > .items > :nth-child(2) > a').click({force:true});
-  });
+ 
   
+  Cypress.on('uncaught:exception', (err, runnable) => {
+    return false;
+  });
 })
