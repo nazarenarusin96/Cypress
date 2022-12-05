@@ -16,4 +16,3 @@ describe('empty spec', () => {
     cy.get(':nth-child(3) > .invalid-feedback').contains("Revisá que tus datos sean los correctos.");
   });
 })
-

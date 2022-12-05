@@ -5,7 +5,7 @@ import "../support/commands";
 describe('CP001', () => {
 
   it('Visitar tienda Movistar', () => {
-    cy.visit('https://www.movistar.com.ar');
+    indexPage.urlMovistar();
   });
 
   it('Filtro por ver mas equipos', () => {

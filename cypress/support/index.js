@@ -20,6 +20,11 @@ class indexPage{
     }
 
     //CP001
+
+    urlMovistar() {
+        cy.visit('https://www.movistar.com.ar')
+    }
+
     verLista=(element)=>{
         cy.log("Ingresa a la lista de equipos");
         cy.get(this.verEquipos).click();
