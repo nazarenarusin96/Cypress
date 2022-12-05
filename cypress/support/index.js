@@ -17,6 +17,19 @@ class indexPage{
         this.bancoCredicoop='#selectBank',
         this.tarjetaVisa='#selectCardByBank',
         this.verificaNoExist='60 Cuotas'
+
+        //CP004
+
+        this.visitaMiMovistar=".pnt-opciones-menu-desktop > .mi-movistar-login > .btn-group > .mi-movistar-login__button > span",
+        this.ingresaMimovistar=".pnt-opciones-menu-desktop > .mi-movistar-login > .btn-group > .dropdown-menu > .pnt-contenedor-dropdown > :nth-child(2) > .btn",
+        this.lineaMovil=":nth-child(1) > .f9fmg4o > .feb23nm > .fdt65p4",
+        this.botonSiguiente=".f13dbscq",
+        this.opcionDni=":nth-child(3) > .fcaipju > .fddsvlq > .fkhz08q > .fodlaap",
+
+        this.ingresarEmail="#nemail",
+        this.ingresarContraseña="#npass",
+        this.botonEnviar="#btn-enviar",
+        this.revisarDatos=":nth-child(3) > .invalid-feedback"
     }
 
     //CP001
@@ -55,5 +68,23 @@ class indexPage{
 
     validacion=(element)=>{
         cy.contains(this.verificaNoExist).should("not.exist");
+    }
+
+    //CP004
+
+    visitMovistar=(element)=>{
+        cy.get(this.visitaMiMovistar).click({force:true});
+        cy.get(this.ingresaMimovistar).click({force:true});
+        cy.get(this.lineaMovil).click({force:true});
+        cy.get(this.botonSiguiente).click({force:true});
+        cy.get(this.opcionDni).click({force:true});
+        cy.get(this.botonSiguiente).click({force:true});
+    }
+
+    ingresarLogin=(element)=>{
+        cy.get(this.ingresarEmail).click({force:true}).type("emailprueba123@gmail.com");
+        cy.get(this.ingresarContraseña).click({force:true}).type("contraseña123");
+        cy.get(this.botonEnviar).click({force:true});
+        cy.get(this.revisarDatos).contains("Revisá que tus datos sean los correctos.");
     }
 }export default new indexPage();

@@ -14,8 +14,7 @@ describe('CP001', () => {
 
   it('Ingreso la busqueda e ingreso al equipo a52s', () => {
     indexPage.selectSearch();
-  });
-  
+  });  
   
   it('Verifica que se puede pagar en hasta 12 cuotas', () => {
     indexPage.verification();

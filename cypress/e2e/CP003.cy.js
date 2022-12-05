@@ -2,7 +2,7 @@ import indexPage from "../support/index";
 
 describe('empty spec', () => {
   it('Visitar tienda Movistar', () => {
-    cy.visit('https://www.movistar.com.ar');
+    indexPage.urlMovistar();
   });
 
   it('Ingresar al tercer equipo de la lista inicial', () => {
