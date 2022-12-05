@@ -1,0 +1,14 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "Casos de prueba en Cypress con Movistar",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "Nazarena Rusin",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^11.2.0"
+  }
+}
