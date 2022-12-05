@@ -8,8 +8,11 @@ describe('empty spec', () => {
     cy.get('.pnt-opciones-menu-desktop > .mi-movistar-login > .btn-group > .dropdown-menu > .pnt-contenedor-dropdown > :nth-child(2) > .btn').click({force:true});
     cy.get(':nth-child(1) > .f9fmg4o > .feb23nm > .fdt65p4').click({force:true});
     cy.get('.f13dbscq').click({force:true});
-    cy.get('[aria-label="Seleccionado,2 o más con DNI"] > .fcaipju').click({force:true});
+    cy.get(':nth-child(3) > .fcaipju > .fddsvlq > .fkhz08q > .fodlaap').click({force:true});
     cy.get('.f13dbscq').click({force:true});
+    cy.get('#nemail').click({force:true}).type("emailprueba123@gmail.com");
+    cy.get('#npass').click({force:true}).type("contraseña123");
+    cy.get('#btn-enviar').click({force:true});
   });
 })
 
