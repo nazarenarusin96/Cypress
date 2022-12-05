@@ -13,6 +13,7 @@ describe('empty spec', () => {
     cy.get('#nemail').click({force:true}).type("emailprueba123@gmail.com");
     cy.get('#npass').click({force:true}).type("contraseña123");
     cy.get('#btn-enviar').click({force:true});
+    cy.get(':nth-child(3) > .invalid-feedback').contains("Revisá que tus datos sean los correctos.");
   });
 })
 
