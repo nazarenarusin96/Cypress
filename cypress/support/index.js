@@ -24,13 +24,13 @@ class indexPage{
 
         //CP004
 
-        this.visitaMiMovistar=".pnt-opciones-menu-desktop > .mi-movistar-login > .btn-group > .mi-movistar-login__button > span",
+        this.visitaMiMovistar="div",
         this.ingresaMimovistar=".pnt-opciones-menu-desktop > .mi-movistar-login > .btn-group > .dropdown-menu > .pnt-contenedor-dropdown > :nth-child(2) > .btn",
         this.lineaMovil=":nth-child(1) > .f9fmg4o > .feb23nm > .fdt65p4",
-        this.botonSiguiente=".f13dbscq",
+        this.botonSiguiente="div",
         this.opcionDni=":nth-child(3) > .fcaipju > .fddsvlq > .fkhz08q > .fodlaap",
 
-
+        this.buscarInput="input",
         this.botonEnviar="#btn-enviar",
         this.revisarDatos=".invalid-feedback.npass-invalid"
         
@@ -92,19 +92,19 @@ class indexPage{
 
     visitMovistar=(element)=>{
         cy.log("Ingresa a la seccion de Mi Movistar para verificar el login");
-        cy.get(this.visitaMiMovistar).click({force:true});
+        cy.get(this.visitaMiMovistar).find("button").eq(1).click({force:true});
         cy.get(this.ingresaMimovistar).click({force:true});
         cy.get(this.lineaMovil).click({force:true});
-        cy.get(this.botonSiguiente).click({force:true});
+        cy.get(this.botonSiguiente).find("button").last().click({force:true});
         cy.get(this.opcionDni).click({force:true});
-        cy.get(this.botonSiguiente).click({force:true});
+        cy.get(this.botonSiguiente).find("button").first().click({force:true});
     }
 
     ingresarLogin=(element)=>{
-        cy.log("Se ingresan datos incorrectos para verificar el login");
-        cy.get("input").filter('[type="email"]').type("emailprueba123@gmail.com");
-        cy.get("input").filter('[type="password"]').type("contraseña123");
-        cy.get(this.botonEnviar).click({force:true});
+        cy.log("Se ingresan datos incorrectos para verificar el login y verifica que no se pueda ingresar datos no registrados");
+        cy.get(this.buscarInput).filter('[type="email"]').type("emailprueba123@gmail.com");
+        cy.get(this.buscarInput).filter('[type="password"]').type("contraseña123");
+        cy.get("form").find("button").first().click({force:true});
         cy.log("Verifica que no se pueda ingresar con datos incorrectos");
         //cy.get(this.revisarDatos).contains("Revisá que tus datos sean los correctos.");
         cy.get(this.revisarDatos).should("have.text","\n\t\t\t\t\t\t\tRevisá que tus datos sean los correctos.\n\t\t\t\t\t\t  ");
