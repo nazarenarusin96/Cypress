@@ -61,7 +61,7 @@ class indexPage{
     //CP002
 
     filtrarOpciones=(element)=>{
-        cy.get(this.filtrarPor).click({force:true});
+        cy.get(this.filtrarPor).click({force:true});        
     }
 
     //CP003

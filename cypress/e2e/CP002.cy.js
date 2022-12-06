@@ -11,12 +11,12 @@ describe('empty spec', () => {
 
   it('Filtro por cantidad de dinero asignada', () => {
     indexPage.filtrarOpciones();
-    cy.get("ol").find("li").eq(5).click();
+    cy.get("ol").find("li").eq(5).click({force:true});
     indexPage.filtrarOpciones();
     cy.get("ol").find("li").eq(8).click({force:true});
   });
- 
   
+  Cypress.LocalStorage.clear = function(keys, ls, rs) {};
   Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
   });
