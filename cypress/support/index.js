@@ -20,7 +20,7 @@ class indexPage{
         this.opFinanciacion='#open-installments-modal',
         this.bancoCredicoop='#selectBank',
         this.tarjetaVisa='#selectCardByBank',
-        this.verificaNoExist='60 Cuotas'
+        this.verificaNoExist='#bodyTable > :nth-child(4) > :nth-child(1)'
 
         //CP004
 
@@ -30,9 +30,7 @@ class indexPage{
         this.botonSiguiente=".f13dbscq",
         this.opcionDni=":nth-child(3) > .fcaipju > .fddsvlq > .fkhz08q > .fodlaap",
 
-        //this.ingresarEmail="#nemail",
-        //this.ingresarContraseña="#npass",
-        //this.ingresarInput="input",
+
         this.botonEnviar="#btn-enviar",
         this.revisarDatos=":nth-child(3) > .invalid-feedback"
     }
@@ -84,8 +82,8 @@ class indexPage{
     }
 
     validacion=(element)=>{
-        cy.log("Verifica que no se pueda seleccionar 60 cuotas");
-        cy.contains(this.verificaNoExist).should("not.exist");
+        cy.log("Verifica que exista 60 cuotas (aparecera un mensaje de error)");
+        cy.get(this.verificaNoExist).contains("60");
     }
 
     //CP004
@@ -102,8 +100,6 @@ class indexPage{
 
     ingresarLogin=(element)=>{
         cy.log("Se ingresan datos incorrectos para verificar el login");
-        //cy.get(this.ingresarEmail).click({force:true}).type("emailprueba123@gmail.com");
-        //cy.get(this.ingresarContraseña).click({force:true}).type("contraseña123");
         cy.get("input").filter('[type="email"]').type("emailprueba123@gmail.com");
         cy.get("input").filter('[type="password"]').type("contraseña123");
         cy.get(this.botonEnviar).click({force:true});
