@@ -32,7 +32,8 @@ class indexPage{
 
 
         this.botonEnviar="#btn-enviar",
-        this.revisarDatos=":nth-child(3) > .invalid-feedback"
+        this.revisarDatos=".invalid-feedback.npass-invalid"
+        
     }
 
     //CP001
@@ -57,7 +58,8 @@ class indexPage{
 
     verification=(element)=>{
         cy.log("Verifica que el equipo se pueda abonar en 12 cuotas");
-        cy.get(this.verificacion).contains("12");
+        //cy.get(this.verificacion).contains("12");
+        cy.get(this.verificacion).should('have.text',"Hasta  12  cuotas sin interés con tarjetas seleccionadas");
     }
 
     //CP002
@@ -83,7 +85,6 @@ class indexPage{
 
     validacion=(element)=>{
         cy.log("Verifica que exista 60 cuotas (aparecera un mensaje de error)");
-        //cy.get(this.verificaNoExist).contains("60");
         cy.get(this.verificaNoExist).should('have.text',"60");
     }
 
@@ -105,6 +106,7 @@ class indexPage{
         cy.get("input").filter('[type="password"]').type("contraseña123");
         cy.get(this.botonEnviar).click({force:true});
         cy.log("Verifica que no se pueda ingresar con datos incorrectos");
-        cy.get(this.revisarDatos).contains("Revisá que tus datos sean los correctos.");
+        //cy.get(this.revisarDatos).contains("Revisá que tus datos sean los correctos.");
+        cy.get(this.revisarDatos).should("have.text","\n\t\t\t\t\t\t\tRevisá que tus datos sean los correctos.\n\t\t\t\t\t\t  ");
     }
 }export default new indexPage();
