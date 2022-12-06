@@ -85,7 +85,10 @@ class indexPage{
 
     validacion=(element)=>{
         cy.log("Verifica que exista 60 cuotas (aparecera un mensaje de error)");
-        cy.get(this.verificaNoExist).should('have.text',"60");
+        //cy.get(this.verificaNoExist).should('have.text',"60");
+        cy.get(this.verificaNoExist).should($element => {
+            expect($element).to.have.text("60");
+        })
     }
 
     //CP004
