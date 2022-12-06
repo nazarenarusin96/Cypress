@@ -39,7 +39,8 @@ class indexPage{
     //CP001
 
     urlMovistar() {
-        cy.visit('https://www.movistar.com.ar')
+        cy.log("Ingresa a la pagina de Movistar");
+        cy.visit('https://www.movistar.com.ar');
     }
 
     verLista=(element)=>{
@@ -48,6 +49,7 @@ class indexPage{
     }
 
     selectSearch=(element)=>{
+        cy.log("Ingresa a la seccion de busqueda y se selecciona el equipo A52s");
         cy.get(this.search).click({force:true}).type("a52s");
         cy.get(this.seleccionarSearch).click({force:true});
         cy.get(this.seleccionarEquipo).click({force:true});
@@ -55,34 +57,40 @@ class indexPage{
     }
 
     verification=(element)=>{
+        cy.log("Verifica que el equipo se pueda abonar en 12 cuotas");
         cy.get(this.verificacion).contains("12");
     }
 
     //CP002
 
     filtrarOpciones=(element)=>{
+        cy.log("Se ingresa al menu de filtrado");
         cy.get(this.filtrarPor).click({force:true});        
     }
 
     //CP003
 
     lista=(element)=>{
+        cy.log("Ingresa a la lista de equipos y se selecciona el tercero");
         cy.get(this.terceroLista).click({force:true});
     }
 
     financiacion=(element)=>{
+        cy.log("Ingresa a la seccion de financiacion y se selecciona el banco Credicoop y tarjeta Visa");
         cy.get(this.opFinanciacion).click({force:true});
         cy.get(this.bancoCredicoop).select("Credicoop");
         cy.get(this.tarjetaVisa).select("Visa");
     }
 
     validacion=(element)=>{
+        cy.log("Verifica que no se pueda seleccionar 60 cuotas");
         cy.contains(this.verificaNoExist).should("not.exist");
     }
 
     //CP004
 
     visitMovistar=(element)=>{
+        cy.log("Ingresa a la seccion de Mi Movistar para verificar el login");
         cy.get(this.visitaMiMovistar).click({force:true});
         cy.get(this.ingresaMimovistar).click({force:true});
         cy.get(this.lineaMovil).click({force:true});
@@ -92,9 +100,11 @@ class indexPage{
     }
 
     ingresarLogin=(element)=>{
+        cy.log("Se ingresan datos incorrectos para verificar el login");
         cy.get(this.ingresarEmail).click({force:true}).type("emailprueba123@gmail.com");
         cy.get(this.ingresarContraseña).click({force:true}).type("contraseña123");
         cy.get(this.botonEnviar).click({force:true});
+        cy.log("Verifica que no se pueda ingresar con datos incorrectos");
         cy.get(this.revisarDatos).contains("Revisá que tus datos sean los correctos.");
     }
 }export default new indexPage();

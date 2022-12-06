@@ -23,4 +23,4 @@ describe('CP001', () => {
   Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
   });
-});
+}); 
