@@ -30,8 +30,9 @@ class indexPage{
         this.botonSiguiente=".f13dbscq",
         this.opcionDni=":nth-child(3) > .fcaipju > .fddsvlq > .fkhz08q > .fodlaap",
 
-        this.ingresarEmail="#nemail",
-        this.ingresarContraseña="#npass",
+        //this.ingresarEmail="#nemail",
+        //this.ingresarContraseña="#npass",
+        //this.ingresarInput="input",
         this.botonEnviar="#btn-enviar",
         this.revisarDatos=":nth-child(3) > .invalid-feedback"
     }
@@ -101,8 +102,10 @@ class indexPage{
 
     ingresarLogin=(element)=>{
         cy.log("Se ingresan datos incorrectos para verificar el login");
-        cy.get(this.ingresarEmail).click({force:true}).type("emailprueba123@gmail.com");
-        cy.get(this.ingresarContraseña).click({force:true}).type("contraseña123");
+        //cy.get(this.ingresarEmail).click({force:true}).type("emailprueba123@gmail.com");
+        //cy.get(this.ingresarContraseña).click({force:true}).type("contraseña123");
+        cy.get("input").filter('[type="email"]').type("emailprueba123@gmail.com");
+        cy.get("input").filter('[type="password"]').type("contraseña123");
         cy.get(this.botonEnviar).click({force:true});
         cy.log("Verifica que no se pueda ingresar con datos incorrectos");
         cy.get(this.revisarDatos).contains("Revisá que tus datos sean los correctos.");
