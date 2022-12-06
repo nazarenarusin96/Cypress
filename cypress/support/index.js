@@ -3,7 +3,7 @@ class indexPage{
 
         //CP001
 
-        this.verEquipos=".device-carousel-title > a",
+        this.verEquipos="h2",
         this.search="#search",
         this.seleccionarSearch="#search_mini_form",
         this.seleccionarEquipo="#qs-option-0",
@@ -45,7 +45,7 @@ class indexPage{
 
     verLista=(element)=>{
         cy.log("Ingresa a la lista de equipos");
-        cy.get(this.verEquipos).click();
+        cy.get(this.verEquipos).find("a").click();
     }
 
     selectSearch=(element)=>{
