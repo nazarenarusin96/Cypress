@@ -4,7 +4,7 @@
   "description": "Casos de prueba en Cypress con Movistar",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/cypress open"
+    "test": "npx cypress open"
   },
   "author": "Nazarena Rusin",
   "license": "ISC",
