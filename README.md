@@ -9,4 +9,6 @@ Instrucciones de deploy
 
 1_ npm i para instalar las dependencias necesarias
 
-2_ ./node_modules/.bin/cypress open o run para poder iniciar el proyecto
+3_ npm test para ejecutar script de inicio
+
+2_ ./node_modules/.bin/cypress open o run en su defecto para poder iniciar el proyecto
