@@ -1,6 +1,6 @@
 import indexPage from "../support/index";
 
-describe('empty spec', () => {
+describe('CP003', () => {
   it('Visitar tienda Movistar', () => {
     indexPage.urlMovistar();
   });

@@ -1,6 +1,6 @@
 import indexPage from "../support/index";
 
-describe('empty spec', () => {
+describe('CP002', () => {
   it('Visitar tienda Movistar', () => {
     indexPage.urlMovistar();
   });
@@ -10,14 +10,18 @@ describe('empty spec', () => {
   });
 
   it('Filtro por cantidad de dinero asignada', () => {
-    indexPage.filtrarOpciones();
-    cy.get("ol").find("li").eq(5).click({force:true});
-    indexPage.filtrarOpciones();
-    cy.get("ol").find("li").eq(8).click({force:true});
+    indexPage.filtrarOpciones({ timeout: 20000 });
+    cy.contains('200').click({force:true});
+  });
+
+  it('Filtro por cantidad de memoria interna', () => {
+    cy.contains('256').click({force:true});
+  });
+
+  it('Muestra los equipos que cumplan con la condicion', () => {
+    cy.get('#product-item-info_12316 > .details > .product-item-name > .product-item-link > .brand').should('have.text', '\n                                        Motorola                                    ').and('not.contain', 'Samsung');
   });
   
-  Cypress.LocalStorage.clear = function(keys, ls, rs) {};
-  Cypress.on('uncaught:exception', (err, runnable) => {
-    return false;
-  });
+  
+  
 })

@@ -8,11 +8,14 @@ class indexPage{
         this.seleccionarSearch="#search_mini_form",
         this.seleccionarEquipo="#qs-option-0",
         this.ingresarEquipo=".product-image-photo",
-        this.verificacion=".active > .details > ul > :nth-child(1)"
+        this.verificacion=".active > .details > ul > :nth-child(1)",
+        this.screenshotCP001="#movistar-buy-options-wrapper > .active",
+        this.screenshotEquipo=".wrapper > .products"
 
         //CP002
 
         this.filtrarPor="#layered-filter-block > .block-title > strong",
+        
 
         //CP003
 
@@ -20,7 +23,8 @@ class indexPage{
         this.opFinanciacion='#open-installments-modal',
         this.bancoCredicoop='#selectBank',
         this.tarjetaVisa='#selectCardByBank',
-        this.verificaNoExist='#bodyTable > :nth-child(4) > :nth-child(1)'
+        this.verificaNoExist='#bodyTable > :nth-child(5) > :nth-child(1)',
+        this.screenshotTabla="#modal-content-18"
 
         //CP004
 
@@ -32,7 +36,9 @@ class indexPage{
 
         this.buscarInput="input",
         this.botonEnviar="#btn-enviar",
-        this.revisarDatos=".invalid-feedback.npass-invalid"
+        this.revisarDatos=".invalid-feedback.npass-invalid",
+        this.formLogin="form",
+        this.screenshotLogin="#loginForm > .form-container"
         
     }
 
@@ -53,6 +59,10 @@ class indexPage{
         cy.get(this.search).click({force:true}).type("a52s");
         cy.get(this.seleccionarSearch).click({force:true});
         cy.get(this.seleccionarEquipo).click({force:true});
+
+        cy.log("Se toma una screenshot que muestra el equipo seleccionado");
+        cy.get(this.screenshotEquipo).screenshot({overwrite: true});
+
         cy.get(this.ingresarEquipo).click({force:true});
     }
 
@@ -60,6 +70,9 @@ class indexPage{
         cy.log("Verifica que el equipo se pueda abonar en 12 cuotas");
         //cy.get(this.verificacion).contains("12");
         cy.get(this.verificacion).should('have.text',"Hasta  12  cuotas sin interés con tarjetas seleccionadas");
+
+        cy.log("Se toma una screenshot que muestra que se puede pagar en 12 cuotas");
+        cy.get(this.screenshotCP001).screenshot({overwrite: true});
     }
 
     //CP002
@@ -81,14 +94,21 @@ class indexPage{
         cy.get(this.opFinanciacion).click({force:true});
         cy.get(this.bancoCredicoop).select("Credicoop");
         cy.get(this.tarjetaVisa).select("Visa");
+
+        cy.log("Se toma un screenshot de la tabla de cuotas");
+        cy.get(this.screenshotTabla).screenshot({overwrite: true});
     }
 
     validacion=(element)=>{
         cy.log("Verifica que exista 60 cuotas (aparecera un mensaje de error)");
-        //cy.get(this.verificaNoExist).should('have.text',"60");
+        //cy.get(this.verificaNoExist).should('not.contain',"60").screenshot();
+
         cy.get(this.verificaNoExist).should($element => {
-            expect($element).to.have.text("60");
-        })
+            expect($element).to.not.include.text("60");
+        });
+
+        cy.log("Se toma un screenshot de la cantidad maxima de cuotas que se puede abonar");
+        cy.get(this.verificaNoExist).screenshot({overwrite: true});
     }
 
     //CP004
@@ -107,9 +127,15 @@ class indexPage{
         cy.log("Se ingresan datos incorrectos para verificar el login y verifica que no se pueda ingresar datos no registrados");
         cy.get(this.buscarInput).filter('[type="email"]').type("emailprueba123@gmail.com");
         cy.get(this.buscarInput).filter('[type="password"]').type("contraseña123");
-        cy.get("form").find("button").first().click({force:true});
+
+        cy.log("Se toma un screenshot de los datos ingresados erroneos");
+        cy.get(this.screenshotLogin).screenshot({overwrite: true});
+
+        cy.get(this.formLogin).find("button").first().click({force:true});
         cy.log("Verifica que no se pueda ingresar con datos incorrectos");
+        
         //cy.get(this.revisarDatos).contains("Revisá que tus datos sean los correctos.");
+
         cy.get(this.revisarDatos).should("have.text","\n\t\t\t\t\t\t\tRevisá que tus datos sean los correctos.\n\t\t\t\t\t\t  ");
     }
 }export default new indexPage();
